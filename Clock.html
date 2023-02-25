@@ -1,0 +1,133 @@
+<!Doctype HTML>
+
+<html>
+  
+  
+  <head>
+    
+    
+  <title>Clock - JavaScript</title>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+  
+  </head>
+  
+  
+  
+  
+  <body class = "w3-image w3-mobile" style = "background-image: url('https://st2.depositphotos.com/2157313/8603/i/600/depositphotos_86030334-stock-photo-black-alarm-clock.jpg');">
+    
+    
+    
+
+    
+    
+    <div class = "w3-display-middle">
+    
+    
+
+    <div class = "w3-mobile w3-animate-top">
+      
+      
+  
+    <div class = "w3-mobile w3-padding w3-center w3-cell w3-text-white w3-hover-opacity w3-red w3-hover-cyan">
+      
+    <h1 class = "w3-mobile w3-arial w3-xxxlarge w3-bold"><b>Time:<br>Date:</b></h1>
+    
+    </div>
+    
+
+    <div class = "w3-mobile w3-padding w3-center w3-cell w3-cyan w3-text-black w3-hover-opacity w3-hover-red">
+    
+    <h1 Id = "javascript" class = "w3-mobile w3-arial w3-xxxlarge w3-bold"></h1>
+    
+    </div>
+
+   
+   
+    </div>
+  
+    
+  
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <script>
+    
+      
+      /*let a = new Date();
+    
+      document.getElementById("javascript").innerHTML = a ;
+      
+
+      // OR
+
+
+      /*let a = new Date();
+      
+      let date = a.toLocaleDateString();
+      
+      let time = a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds();
+      
+      document.getElementById("javascript").innerHTML = time + "<br>" + date;
+      
+      
+      //OR
+      
+      
+      /*setInterval (function()
+      
+      
+      {let a = new Date();
+      
+      let date = a.toLocaleDateString();
+      
+      let time = a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds();
+      
+      document.getElementById("javascript").innerHTML = time + "<br>" + date;}
+        
+      ,1000);
+      
+      
+      //OR  */
+      
+      
+      
+      const options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+      
+      
+      setInterval ( () => {
+        
+      
+      let a = new Date();
+      
+      let date = a.toLocaleDateString(undefined, options);
+      
+      let time = a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds();
+      
+      document.getElementById("javascript").innerHTML = time +"<br>"+ date;}
+      
+      
+      ,1000);
+      
+      
+    </script>
+    
+    
+    
+    
+  </body>
+  
+  
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+
+<html>
+  
+  
+  
+  
+  
+<head>
+<title>Notes App</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+  
+  
+  
+  
+  
+<body style="background-image: url('https://images.wallpapersden.com/image/download/mountains-moon-trees-minimal_am1qaWWUmZqaraWkpJRma21lrWZlamVnZWZubGZs.jpg');">
+  
+  
+  
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Magic Notes</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" id = "searchNotes" type="search" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+  </div>
+</nav>
+  
+  
+  
+  
+  <br><br>
+
+
+
+
+  <div class = "container">
+  <hr>
+  <div class = "container"><h2 class = "text-light">When Your Heart Speaks, Take Good Notes...</h2>
+  <hr>
+  <br>
+  </div>
+  
+  <div class="card bg-dark">
+  <div class="card-body">
+    <h5 class="card-title text-light">Add Note</h5>
+    <div class="mb-3">
+  <textarea class="form-control" id="addtxt" rows="3"></textarea>
+</div>
+    <button class="btn btn-success" Id = "addbtn">Done</button>
+  </div>
+</div>
+  
+  
+  <br><br>
+  <hr>
+  <h2 class = "text-light">Your Notes</h2>
+  <hr>
+  <br>
+  
+  <div id = "notes" class = "row container-fluid"></div></div>
+  
+  
+  
+  
+  
+  
+
+  <script>
+  
+  
+    
+    //console.log("Welcome to notes app.");
+    
+    showNotes();
+    
+    
+    
+    
+    // If user adds a note, add it to the localStorage.
+    
+    
+    
+    
+    let addbtn = document.getElementById("addbtn");
+    
+    addbtn.addEventListener("click", function(e){
+      
+      let addtxt = document.getElementById("addtxt");
+      
+      let notes  = localStorage.getItem("notes");
+      
+      if (notes == null){
+        
+          notesObj = [];
+        
+      }
+      
+      else if (addtxt.textLength == 0) {
+        
+        alert("Please type something to add as a note. Thanks!");
+        
+        button.disabled = true;
+      
+      }
+      
+      else {notesObj = JSON.parse(notes);
+      
+      }
+      
+      notesObj.push(addtxt.value);
+      
+      localStorage.setItem("notes", JSON.stringify(notesObj));
+      
+      addtxt.value = "";
+      
+      // console.log(notesObj);
+      
+      showNotes();
+      
+    });
+    
+    
+    
+    
+    
+    
+    // For showing user's added notes on screen.
+    
+    
+    
+    
+    function showNotes() {
+    
+    let notes  = localStorage.getItem("notes");
+
+    if (notes == null){
+        
+        notesObj = [];
+        
+      }
+      
+      else {notesObj = JSON.parse(notes);
+      
+      }
+      
+    
+      let html = "";
+      
+      notesObj.forEach(function(element, index) {
+      
+      html += `
+      
+      <div class="noteCard my-2 mx-2 card bg-dark" style="width: 18rem;">
+      
+      <div class="card-body">
+      
+      <h5 class="card-title text-light">Note ${index + 1}</h5>
+      
+      <p class="card-text text-light"> ${element}</p>
+      
+      <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-danger">Delete Note</button>
+      
+      </div>
+      
+      </div>`;
+      
+      });
+    
+    
+    
+      let notesElm = document.getElementById("notes");
+      
+      if (notesObj.length != 0) {
+        
+        notesElm.innerHTML = html;
+        
+      }
+    
+      else {
+        
+        notesElm.innerHTML = "<p>Nothing to show. Please add a note above to see it here. Thanks!</p>";
+        
+      }
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    // Function to delete a note.
+    
+    
+    
+    
+    function deleteNote(index){
+      
+       console.log("I am deleting", index);
+       
+    
+      let notes  = localStorage.getItem("notes");
+
+      if (notes == null){
+        
+        notesObj = [];
+        
+      }
+      
+      else {notesObj = JSON.parse(notes);
+      
+      }
+      
+      
+      
+      notesObj.splice(index, 1);
+      
+      localStorage.setItem("notes", JSON.stringify(notesObj));
+      
+      showNotes();
+      
+      
+    }
+    
+    
+    
+    
+    
+    
+    // For searching notes.
+    
+    
+    let search = document.getElementById("searchNotes");
+    
+    search.addEventListener("input", function(){
+      
+      
+      let inputVal = search.value.toLowerCase();
+      
+      //console.log("Input event fired", inputVal);
+      
+      
+      let noteCards = document.getElementsByClassName("noteCard");
+      
+      Array.from(noteCards).forEach(function(element){
+        
+        let cardTxt = element.getElementsByTagName("p")[0].innerText;
+        
+        //console.log(cardTxt);
+        
+        if (cardTxt.includes(inputVal)){
+          
+          element.style.display = "block";
+          
+        }
+        
+        else {
+          
+        element.style.display = "none";
+
+        }
+        
+        
+      })
+      
+      
+      
+      
+    })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+  
+  
+
+</body>
+
+</html>

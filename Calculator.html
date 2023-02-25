@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+  
+<head>
+<title>Calculator</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+</head>
+  
+  
+<body style="background-image: url('https://www.teahub.io/photos/full/255-2550281_wallpaper-gradient-green-yellow-linear-dark-cyan-color.jpg');">
+  
+  <!--h1 class = "w3-center w3-jumbo w3-cursive w3-animate-zoom w3-text-blue"><b>Calculate Me!</b></h1-->
+  
+  
+  <div class = "w3-container w3-display-middle w3-red w3-card-4 w3-cursive w3-center w3-round-xxlarge" style = "border: 2px solid black;">
+    
+    <div class = "w3-padding w3-margin w3-xxlarge w3-animate-zoom"><input class = "input w3-cursive w3-border-black w3-round-xxlarge w3-center" type = "text" placeholder = "Calculate Me!" ></div>
+    
+    <br>
+    
+    <div class = "w3-animate-zoom">
+    
+    
+    <div class = "w3-padding w3-xxlarge">
+      
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;" >Clear</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;" onClick = "fun">sqrt</button>
+      
+    </div>
+    
+    
+    <div class = "w3-padding w3-xxlarge">
+      
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">7</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">8</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">9</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">*</button>
+      
+    </div>
+    
+    
+    <div class = "w3-padding w3-xxlarge">
+      
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">4</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">5</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">6</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">/</button>
+      
+    </div>
+    
+    
+    <div class = "w3-padding w3-xxlarge">
+      
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">1</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">2</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">3</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">+</button>
+      
+    </div>
+    
+    
+    <div class = "w3-padding w3-xxlarge">
+      
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">0</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">.</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">=</button>
+      <button class = "w3-button w3-yellow w3-round-xxlarge w3-hover-opacity" style = "border: 2px solid black;">-</button>
+      
+    </div>
+    
+    <br>
+    
+    </div>
+    
+  </div>
+  
+  
+  
+  
+  
+  <script>
+    
+    
+    
+    // I declared an empty string
+    
+    let string = "";
+    
+    
+    
+    // Made an Arry & Applied a click event on every button
+    
+    let buttons = document.querySelectorAll('button');
+    
+    Array.from(buttons).forEach((button)=>{
+    
+    button.addEventListener("click", (e)=>{
+      
+    
+    
+    // If equal pressed than evalute the string
+    
+    if (e.target.innerHTML == '='){
+    
+    string = eval(string);
+    
+    document.querySelector('input').value = string;
+
+    }
+    
+    
+    
+    // This is the code for clearing the calculator's screen
+    
+    else if (e.target.innerHTML == 'Clear'){
+      
+    string = ""
+    
+    document.querySelector('input').value = string;
+      
+    }
+    
+    
+    
+    
+    // And at last this code is just to show the text of the button's inner HTML into the display of calculator.
+    
+    else {
+      
+    console.log(e.target);
+    
+    string = string + e.target.innerHTML;
+    
+    document.querySelector('input').value = string;
+    
+    }
+    
+    
+    
+      
+    });
+    
+    });
+    
+    
+    
+    
+    
+    // For making sqrt button work
+    
+    
+    fun();
+    
+    function  fun() {
+      
+      
+      if (document.querySelector('input').innerHTML == "sqrt" ){
+        
+        
+        document.querySelector('input').value = Math.sqrt(document.querySelector('input').value);
+        
+        
+        
+      }
+      
+      
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+</body>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</html>
